@@ -11,16 +11,156 @@
 
 <body>
     <!-- <h1>百步梯</h1> -->
-    <div id="imgbox"><img src="png/标题/技术部.png" width="60%" height="20%"></div>
-    <div id="text">
-        <p>
-        </p>
-    </div>
+    <ul class="list" id="intro" style="left:0px;">
+        <li>
+            <div id="imgbox"><img src="png/标题/技术部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/视设部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/综新部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/编辑部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/综管部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/策推部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/视频部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/外联部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/人力部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/节目部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div id="imgbox"><img src="png/标题/产运部.png" width="60%" height="20%"></div>
+            <div id="text">
+                <p>
+                </p>
+            </div>
+        </li>
+
+
+    </ul>
+    <script>
+        function slidecommonkit() {
+
+            var intro = document.getElementById('intro');
+            var list = document.querySelector('.list');
+            var startPosition, endPosition, deltaX, deltaY, moveLength;
+            var commonkitLeft;
+
+            /*手指按下瞬间触发touchstart事件*/
+            intro.addEventListener('touchstart', function (e) {
+                commonkitLeft = parseInt(list.style.left);
+                var touch = e.targetTouches[0];  //targetTouches位于当前DOM元素上的手指动作的列表
+                startPosition = {   //取屏幕上第一个手指相对于页面的坐标
+                    x: touch.pageX,
+                    y: touch.pageY
+                }
+            });
+
+            /*手指移动触发touchmove事件*/
+            intro.addEventListener('touchmove', function (e) {
+                var touch = e.targetTouches[0];
+                endPosition = {
+                    x: touch.pageX,
+                    y: touch.pageY
+                }
+
+                deltaX = endPosition.x - startPosition.x;   //移动到最后的坐标x - 开始时的坐标x
+                moveLength = Math.abs(deltaX);   //获得移动的x方向的距离
+
+                /*向左移动的函数*/
+                var swipeLeft = function () {
+                    if (deltaX < (-30)) {   //这里以30作为判断是否触发、如果deltaX小于-30，说明向左移动
+
+                        if (Math.abs(commonkitLeft) + moveLength > (list.offsetWidth - window.innerWidth)) {   //判断临界值 
+                            list.style.left = window.innerWidth - list.offsetWidth + 'px';
+                        } else {
+                            list.style.left = commonkitLeft - moveLength + 'px';  //上一次的left值-移动的距离（由于距离是正数，而向左移动left值是负数，所以用-）
+                        }
+                    }
+                }
+                swipeLeft();   //执行该函数
+
+                /*向右移动的函数*/
+                var swipeRight = function () {
+                    if (deltaX > 30) {
+                        /*主要是逻辑*/
+                        if (commonkitLeft + moveLength > 0) {
+                            list.style.left = 0 + 'px';
+                        } else {
+                            list.style.left = commonkitLeft + moveLength + 'px';
+                        }
+                    }
+                }
+                swipeRight();
+
+            });
+
+        };
+
+        slidecommonkit();
+    </script>
+
     <div id="allbutton">
         <button onclick="turnenroll()">马上报名</button>
-        <button onclick="turnintro()" class="diff">返回</button>   
+        <button onclick="turnintro()" class="diff">返回</button>
+        <div id="rabbit"><img src="png/5-兔子.png" width="40%" height="40%"></div>
     </div>
-    <div id="rabbit"><img src="png/5-兔子.png" width="40%"height="40%"></div>
+
+
 </body>
 <script>
     function turnenroll() {

@@ -46,11 +46,12 @@ p
 #allbutton
 {
     
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;  
     margin-left: 30%;
+    bottom:10%;
 }
 .buttonbox
 {
@@ -86,4 +87,25 @@ button
     
    
    
+}
+
+.list{
+    
+    width: 1100%;
+    position: absolute;
+    margin-top: 10px;
+    height: 20%;
+}
+.list li{
+    display:inline;
+    position: relative;
+    list-style: none;
+    width: 200px;
+    height: 100%;
+    
+    float: left;
+    margin-left: 13px;
+}
+.list li:first-child{
+    margin-left: 8px;
 }

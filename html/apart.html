@@ -6,10 +6,12 @@
     <link rel="stylesheet" type="text/css" href="css/apart.css">
 
 </head>
+<body>
+
 
 <img src="png/background.png" class="bg">
-<div class="move">
-    <a href="tech.html"><img src="png/tech.png" z-index="1" class="pic1"></a>
+<div class="move" id="move">
+    <!--<a href="tech.html"><img src="png/tech.png" z-index="1" class="pic1"></a>
     <a href="design.html"><img src="png/design.png" z-index="1" class="pic2"></a>
     <a href="news.html"><img src="png/news.png" z-index="1" class="pic1"></a>
     <a href="editor.html"><img src="png/editor.png" z-index="1" class="pic2"></a>
@@ -20,8 +22,58 @@
     <a href="manpower.html"><img src="png/manpower.png" z-index="1" class="pic1"></a>
     <a href="program.html"><img src="png/program.png" z-index="1" class="pic2"></a>
     <a href="product.html"><img src="png/product.png" z-index="1" class="pic1"></a>
-</div>
+--></div>
+<script>
+    var a=new Array()
+    a[0]="<a href='tech.html'><img src='png/tech.png' z-index='1' class='pic1'></a>"+
+   "<a href='design.html'><img src='png/design.png' z-index='1' class='pic2'></a>"+
+    "<a href='news.html'><img src='png/news.png' z-index='1' class='pic1'></a>"+
+    "<a href='editor.html'><img src='png/editor.png' z-index='1' class='pic2'></a>"
+    a[1]="<a href='manage.html'><img src='png/manage.png' z-index='1' class='pic1'></a>"+
+   "<a href='plan.html'><img src='png/plan.png' z-index='1' class='pic2'></a>"+
+    "<a href='video.html'><img src='png/video.png' z-index='1' class='pic1'></a>"+
+    "<a href='communicate.html'><img src='png/communicate.png' z-index='1' class='pic2'></a>"
+    a[2]="<a href='manpower.html'><img src='png/manpower.png' z-index='1' class='pic1'></a>"+
+   "<a href='program.html'><img src='png/program.png' z-index='1' class='pic2'></a>"+
+    "<a href='product.html'><img src='png/product.png' z-index='1' class='pic1'></a>"
+    
+    var move =document.getElementById('move');
+    move.innerHTML=a[0];
+    var i=0;
+    var startPosition, endPosition, deltaY, moveLength;
+    
+    document.body.addEventListener('touchstart',function(e){
+        var touch = e.targetTouches[0];//targetTouches位于当前DOM元素上的手指动作的列表
+        startPosition = {   //取屏幕上第一个手指相对于页面的坐标
+            Y: touch.pageY,
+        }
+    })
+     /*手指移动触发touchmove事件*/
+    document.body.addEventListener('touchmove', function (e) {
+        var touch = e.targetTouches[0];
+        endPosition = {
+            Y: touch.pageY,
+        }
+        deltaY = endPosition.Y - startPosition.Y; 
+        if(deltaY<(-30)){
+            
+            if(i<2){
+                i++;
+                move.innerHTML=a[i];
+            }
+                
+        }
+        else{
+            
+            if(i>0){
+                i--;
+                move.innerHTML=a[i];
+            }
+                
+        }
+    })
 
-
+</script>
+</body>
 
 </html>
